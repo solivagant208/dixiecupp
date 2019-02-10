@@ -24,12 +24,23 @@ public class DixieCup {
     }
     
     
-    public void addItem(String n){
-        items[itemNumber] = n;
-        if(itemNumber + 1 < items.length){
-            itemNumber++;
+    public void addItem(String n)
+    {
+        if(itemNumber != items.length) //Checks if the current item count is less than the array length
+        {
+            items[itemNumber] = n; //Adds item
+            itemNumber ++; //Increases itemNumber
         }
-        
+        else //Runs when the item count is above the array length
+        {
+            String[] temp = new String[itemNumber + 1]; //Creates a temporary array
+            for(int i = 0; i < items.length; i ++)
+            {
+                temp [i] = items[i]; //Copies items over to the temp
+            }
+            items = temp; //Replaces items with the temp
+            addItem(n); //Recursive - Help from a friend
+        }
     }
     
     
